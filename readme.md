@@ -1,25 +1,35 @@
-This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
+=== Custom Cards ===
+Contributors: tomatillodesign
+Donate link: https://www.tomatillodesign.com/
+Tags: gutenberg, blocks, cards, block editor
+Requires at least: 5.2
+Tested up to: 5.4
+Stable tag: 5.4
+Requires PHP: 7.3+
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Below you will find some information on how to run scripts.
+Adds a single customizable Card block to the editor (displayed in grids)
 
->You can find the most recent version of this guide [here](https://github.com/ahmadawais/create-guten-block).
+== Description ==
 
-## 👉  `npm start`
-- Use to compile and run the block in development mode.
-- Watches for any changes and reports back any errors in your code.
+Once installed, this plugin will allow you to use these 7 new blocks in the WordPress editor
 
-## 👉  `npm run build`
-- Use to build production code for your block inside `dist` folder.
-- Runs once and reports back the gzip file sizes of the produced code.
+== Installation ==
 
-## 👉  `npm run eject`
-- Use to eject your plugin out of `create-guten-block`.
-- Provides all the configurations so you can customize the project as you want.
-- It's a one-way street, `eject` and you have to maintain everything yourself.
-- You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block` and from there onwards you have to update and maintain all the dependencies on your own.
+1. Upload the plugin files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress
+3. That's all, now you're ready to start using Custom Editor Blocks!
 
----
+== Frequently Asked Questions ==
 
-###### Feel free to tweet and say 👋 at me [@MrAhmadAwais](https://twitter.com/mrahmadawais/)
+= Help! I'm getting an error that my block cannot be edited. =
 
-[![npm](https://img.shields.io/npm/v/create-guten-block.svg?style=flat-square)](https://www.npmjs.com/package/create-guten-block) [![npm](https://img.shields.io/npm/dt/create-guten-block.svg?style=flat-square&label=downloads)](https://www.npmjs.com/package/create-guten-block)  [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/ahmadawais/create-guten-block) [![Tweet for help](https://img.shields.io/twitter/follow/mrahmadawais.svg?style=social&label=Tweet%20@MrAhmadAwais)](https://twitter.com/mrahmadawais/) [![GitHub stars](https://img.shields.io/github/stars/ahmadawais/create-guten-block.svg?style=social&label=Stars)](https://github.com/ahmadawais/create-guten-block/stargazers) [![GitHub followers](https://img.shields.io/github/followers/ahmadawais.svg?style=social&label=Follow)](https://github.com/ahmadawais?tab=followers)
+Please contact me at https://www.tomatillodesign.com/.
+
+== Changelog ==
+
+= 1.0 =
+* First working version
+
+== Roadmap / ToDo's ==
