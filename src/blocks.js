@@ -10,3 +10,6 @@
  */
 
 import './cards/block.js';
+
+// Photo Cards
+import './photoCardRegular/block.js';

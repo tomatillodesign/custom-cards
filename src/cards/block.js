@@ -1,16 +1,40 @@
 /**
- * BLOCK: custom-cards
- *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
+ * Block dependencies
  */
-
-//  Import CSS.
+import icon from './icon';
 import './editor.scss';
 import './style.scss';
 
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+/**
+ * Internal block libraries
+ */
+const { __ } = wp.i18n;
+const {
+    registerBlockType,
+} = wp.blocks;
+const {
+    Editable,
+    MediaUpload,
+    MediaUploadCheck,
+    BlockControls,
+    InspectorControls,
+    RichText,
+    URLInput,
+    InnerBlocks,
+} = wp.blockEditor;
+const {
+    Button,
+    SelectControl,
+    RadioControl,
+    Panel,
+    PanelBody,
+    PanelRow,
+    TextControl,
+    TextareaControl,
+    RangeControl,
+    ToggleControl,
+} = wp.components;
+const { Fragment } = wp.element;
 
 /**
  * Register: aa Gutenberg Block.
@@ -28,13 +52,35 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 registerBlockType( 'cgb/block-custom-cards', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __( 'Custom Cards' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	icon: {
+               foreground: '#0d72c7',
+               background: '#fff',
+               src: icon,
+          },
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Custom Cards' ),
 		__( 'modal' ),
 		__( 'collapse bootstrap image card' ),
 	],
+     attributes: {
+          cardType: {
+              type: 'string',
+              default: 'photos',
+          },
+          isModal: {
+               type: 'string',
+               default: 'regular',
+          },
+          columnNumber: {
+                type: 'number',
+                default: 2,
+            },
+            flippedCardHeight: {
+                value: 'number',
+                default: 300,
+            },
+        },
 
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -47,53 +93,115 @@ registerBlockType( 'cgb/block-custom-cards', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props ) => {
-		// Creates a <p class='wp-block-cgb-block-custom-cards'></p>.
-		return (
-			<div className={ props.className }>
-				<p>— Hello from the backend.</p>
-				<p>
-					CGB BLOCK: <code>custom-cards</code> is a new Gutenberg block
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
-			</div>
-		);
-	},
 
-	/**
-	 * The save function defines the way in which the different attributes should be combined
-	 * into the final markup, which is then serialized by Gutenberg into post_content.
-	 *
-	 * The "save" property must be specified and must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-	 *
-	 * @param {Object} props Props.
-	 * @returns {Mixed} JSX Frontend HTML.
-	 */
-	save: ( props ) => {
-		return (
-			<div className={ props.className }>
-				<p>— Hello from the frontend.</p>
-				<p>
-					CGB BLOCK: <code>custom-cards</code> is a new Gutenberg block.
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
-			</div>
-		);
-	},
+      edit: props => {
+            const { attributes: { cardType, columnNumber, isModal, flippedCardHeight },
+                className, setAttributes, isSelected } = props;
+
+                const onChangeCardType = cardType => { setAttributes( { cardType } ) };
+                const onChangeIsModal = isModal => { setAttributes( { isModal } ) };
+                const onChangeColumnNumber = columnNumber => { setAttributes( { columnNumber } ) };
+                const onChangeflippedCardHeight = flippedCardHeight => { setAttributes( { flippedCardHeight } ) };
+
+                // setup some vars, strings
+                let cardTypeToDisplay = "Photos";
+                if( cardType === 'icons' ) { cardTypeToDisplay = "Icons"; }
+                else if( cardType === 'buttons' ) { cardTypeToDisplay = "Buttons"; }
+
+                // setup the InnerBlocks that we'll be using, based on the selected choice
+                let clbInnerBlocks = '["cgb/photo-card-regular"]';
+
+            return (
+                 <Fragment>
+                 <InspectorControls>
+                   <PanelBody
+                       title={ __( 'Custom Cards Settings', 'cgb/block-custom-cards' ) }
+                   >
+                         <PanelRow>
+                         <SelectControl
+                              id="clb-select-card-type"
+                              label="Card Type"
+                              value={ cardType }
+                              options={ [
+                                   { label: 'Photos', value: 'photos' },
+                                   { label: 'Icons', value: 'icons' },
+                                   { label: 'Buttons', value: 'buttons' },
+                              ] }
+                              onChange={ onChangeCardType }
+                         />
+                         </PanelRow>
+                       <PanelRow>
+                       <RangeControl
+                            id="clb-select-number-cols"
+                            label="Number of Columns"
+                            value={ columnNumber }
+                            onChange={ onChangeColumnNumber }
+                            min={ 1 }
+                            max={ 6 }
+                        />
+                       </PanelRow>
+                            <RadioControl
+                              id="clb-select-type-of-links"
+                              label="Type of Links"
+                                 selected={ isModal }
+                                 options={ [
+                                     { label: 'Regular Links to Another Page', value: 'regular' },
+                                     { label: 'Modal (Pop-up) Content', value: 'modal' },
+                                ] }
+                                onChange={ onChangeIsModal }
+                          />
+                       <PanelRow>
+                        </PanelRow>
+                   </PanelBody>
+               </InspectorControls>
+
+               <div className={ className }>
+
+               { isSelected ? (
+
+                    <div className="cardset-selected">
+                    <h4>Custom Cards: {cardTypeToDisplay}</h4>
+                    {cardType === 'photos' &&
+                         <InnerBlocks
+                              allowedBlocks={clbInnerBlocks}
+                         />
+                    }
+                    </div>
+
+                            ) : (
+
+                                 <div className="cardset-static">
+                                        <h4>Custom Cards: {cardTypeToDisplay}</h4>
+                                        {cardType === 'photos' &&
+                                             <InnerBlocks
+                                                  allowedBlocks={clbInnerBlocks}
+                                             />
+                                        }
+                                </div>
+
+                            ) }
+                </div>
+                </Fragment>
+
+            );
+        },
+        save: props => {
+            const { columnNumber, flippedCardHeight } = props.attributes;
+
+            let frSpacing = '1fr 1fr';
+            if( columnNumber == 1) { frSpacing = '1fr'; }
+            else if( columnNumber == 3) { frSpacing = '1fr 1fr 1fr'; }
+            else if( columnNumber == 4) { frSpacing = '1fr 1fr 1fr 1fr'; }
+
+            return (
+
+                 // Try nesting a style for child flip cards, see: https://stackoverflow.com/a/10833154/5369381
+
+                 <div className={ 'interactive-cardset' + ' columns-' + columnNumber}  data-card-height={flippedCardHeight} >
+                    <InnerBlocks.Content />
+                </div>
+
+            );
+        },
+
 } );
