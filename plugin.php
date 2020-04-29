@@ -1,13 +1,11 @@
 <?php
 /**
- * Plugin Name: Custom Cards
- * Plugin URI: https://github.com/tomatillodesign/custom-cards/
- * Description: Adds a single customizable Card block to the editor (displayed in grids) – includes Bootstrap modals, icon grid, button grid, and more
- * Author: Chris Liu-Beers, Tomatillo Design
- * Author URI: https://www.tomatillodesign.com/
- * Version: 1.0
- * License: GPL2+
- * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+* Plugin Name: Custom Cards GIT TEST
+* Plugin URI: https://github.com/tomatillodesign/custom-cards/
+* Description: Adds a single customizable Card block to the editor (displayed in grids) – includes Bootstrap modals, icon grid, button grid, and more
+* Author: Chris Liu-Beers, Tomatillo Design
+* Author URI: https://www.tomatillodesign.com/
+* Version: 1.0
  *
  * @package CGB
  */
