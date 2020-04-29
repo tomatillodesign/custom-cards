@@ -1,5 +1,5 @@
 /**
- * BLOCK: banjo-blocks
+ * BLOCK: custom-cards
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -25,15 +25,15 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/block-banjo-blocks', {
+registerBlockType( 'cgb/block-custom-cards', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'banjo-blocks - CGB Block' ), // Block title.
+	title: __( 'Custom Cards' ), // Block title.
 	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
-		__( 'banjo-blocks — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'Custom Cards' ),
+		__( 'modal' ),
+		__( 'collapse bootstrap image card' ),
 	],
 
 	/**
@@ -48,12 +48,12 @@ registerBlockType( 'cgb/block-banjo-blocks', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
-		// Creates a <p class='wp-block-cgb-block-banjo-blocks'></p>.
+		// Creates a <p class='wp-block-cgb-block-custom-cards'></p>.
 		return (
 			<div className={ props.className }>
 				<p>— Hello from the backend.</p>
 				<p>
-					CGB BLOCK: <code>banjo-blocks</code> is a new Gutenberg block
+					CGB BLOCK: <code>custom-cards</code> is a new Gutenberg block
 				</p>
 				<p>
 					It was created via{ ' ' }
@@ -83,7 +83,7 @@ registerBlockType( 'cgb/block-banjo-blocks', {
 			<div className={ props.className }>
 				<p>— Hello from the frontend.</p>
 				<p>
-					CGB BLOCK: <code>banjo-blocks</code> is a new Gutenberg block.
+					CGB BLOCK: <code>custom-cards</code> is a new Gutenberg block.
 				</p>
 				<p>
 					It was created via{ ' ' }

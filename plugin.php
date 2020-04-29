@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Custom Cards GIT TEST
+* Plugin Name: Custom Cards
 * Plugin URI: https://github.com/tomatillodesign/custom-cards/
 * Description: Adds a single customizable Card block to the editor (displayed in grids) – includes Bootstrap modals, icon grid, button grid, and more
 * Author: Chris Liu-Beers, Tomatillo Design
@@ -36,14 +36,14 @@ function clb_enqueue_custom_scripts() {
 
 
 
-
-
-require 'plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/tomatillodesign/custom-gutenberg-blocks',
-	__FILE__, //Full path to the main plugin file or functions.php.
-	'custom-gutenberg-blocks'
-);
-
-//Optional: Set the branch that contains the stable release.
-//$myUpdateChecker->setBranch('prod');
+//
+//
+// require 'plugin-update-checker/plugin-update-checker.php';
+// $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+// 	'https://github.com/tomatillodesign/custom-gutenberg-blocks',
+// 	__FILE__, //Full path to the main plugin file or functions.php.
+// 	'custom-gutenberg-blocks'
+// );
+//
+// //Optional: Set the branch that contains the stable release.
+// //$myUpdateChecker->setBranch('prod');
