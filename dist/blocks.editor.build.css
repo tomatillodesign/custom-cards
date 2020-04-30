@@ -17,3 +17,20 @@
   margin: 0 auto;
   max-width: 740px;
   padding: 2rem; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.clb-card-static {
+  text-align: center;
+  padding-bottom: 12px;
+  border: 1px solid #ccc;
+  background: #fff; }
+
+img.card-static-image {
+  -webkit-filter: grayscale(75%);
+          filter: grayscale(75%);
+  -webkit-filter: opacity(50%);
+          filter: opacity(50%); }

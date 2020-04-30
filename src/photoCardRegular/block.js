@@ -92,32 +92,15 @@ export default registerBlockType(
                 className, setAttributes, isSelected } = props;
             const onSelectImage = img => {
 
-                 console.log( "TESTING 5:17" );
-                 console.log(img);
                  // if WP's "large" image size exists, use that. If not, use the "Full" image size
-                 let imgURL = img.url;
-                 // if( img.sizes ) {
-                 //      imgURL = img.sizes.large.url;
-                 // }
-
-                 if( img.sizes.large.url !== undefined ) {
-                      //imgURL = img.url;
-                      console.log( "TESTING" );
-                      console.log( "imgURL var: " + imgURL );
-                 } else {
-                      //imgURL = img.sizes.large.url;
-                 }
-
-                 let imgURL = img.sizes.large.url ? img.sizes.large.url : img.url;
-
-                 // console.log(`Full: ${img.url}` );
-                 //console.log(`Var: ${imgURL}` );
+                 let imgURL = img.sizes.large ? img.sizes.large.url : img.url;
 
                 setAttributes( {
                     imgID: img.id,
-                    imgURL: img.url,
+                    imgURL: imgURL,
                     imgAlt: img.alt,
                 } );
+                
             };
 
             const onRemoveImage = () => {
