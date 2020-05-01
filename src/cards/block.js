@@ -21,6 +21,7 @@ const {
     RichText,
     URLInput,
     InnerBlocks,
+    BlockAlignmentToolbar,
 } = wp.blockEditor;
 const {
     Button,
@@ -64,6 +65,10 @@ registerBlockType( 'cgb/block-custom-cards', {
 		__( 'collapse bootstrap image card' ),
 	],
      attributes: {
+          blockAlignment: {
+            type: 'string',
+            default: 'center',
+        },
           cardType: {
               type: 'string',
               default: 'photos',
@@ -76,10 +81,11 @@ registerBlockType( 'cgb/block-custom-cards', {
                 type: 'number',
                 default: 2,
             },
-            flippedCardHeight: {
-                value: 'number',
-                default: 300,
-            },
+        },
+        getEditWrapperProps( { blockAlignment } ) {
+            if ( 'left' === blockAlignment || 'right' === blockAlignment || 'full' === blockAlignment ) {
+                return { 'data-align': blockAlignment };
+            }
         },
 
 	/**
@@ -95,13 +101,12 @@ registerBlockType( 'cgb/block-custom-cards', {
 	 */
 
       edit: props => {
-            const { attributes: { cardType, columnNumber, isModal, flippedCardHeight },
+            const { attributes: { blockAlignment, cardType, columnNumber, isModal },
                 className, setAttributes, isSelected } = props;
 
                 const onChangeCardType = cardType => { setAttributes( { cardType } ) };
                 const onChangeIsModal = isModal => { setAttributes( { isModal } ) };
                 const onChangeColumnNumber = columnNumber => { setAttributes( { columnNumber } ) };
-                const onChangeflippedCardHeight = flippedCardHeight => { setAttributes( { flippedCardHeight } ) };
 
                 // setup some vars, strings
                 let cardTypeToDisplay = "Photos";
@@ -109,10 +114,22 @@ registerBlockType( 'cgb/block-custom-cards', {
                 else if( cardType === 'buttons' ) { cardTypeToDisplay = "Buttons"; }
 
                 // setup the InnerBlocks that we'll be using, based on the selected choice
-                let clbInnerBlocks = '["cgb/photo-card-regular"]';
+                let ALLOWED_BLOCKS = [ 'cgb/photo-card-regular' ];
+                if( cardType === 'icons' && isModal === 'regular' ) { ALLOWED_BLOCKS = [ 'cgb/icon-card-regular' ]; }
+                if( cardType === 'buttons' && isModal === 'regular' ) { ALLOWED_BLOCKS = [ 'cgb/button-card-regular' ]; }
+
+                console.log("1251 TEST");
+                const clbAlignment = "align" + blockAlignment;
 
             return (
                  <Fragment>
+                 <BlockControls>
+                      <BlockAlignmentToolbar
+                           value={ blockAlignment }
+                           onChange={ blockAlignment => setAttributes( { blockAlignment } ) }
+                       />
+                    </BlockControls>
+
                  <InspectorControls>
                    <PanelBody
                        title={ __( 'Custom Cards Settings', 'cgb/block-custom-cards' ) }
@@ -155,28 +172,24 @@ registerBlockType( 'cgb/block-custom-cards', {
                    </PanelBody>
                </InspectorControls>
 
-               <div className={ className }>
+               <div className={ className + ' ' + clbAlignment }>
 
                { isSelected ? (
 
                     <div className="cardset-selected">
                     <h4>Custom Cards: {cardTypeToDisplay}</h4>
-                    {cardType === 'photos' &&
                          <InnerBlocks
-                              allowedBlocks={clbInnerBlocks}
+                              allowedBlocks={ ALLOWED_BLOCKS }
                          />
-                    }
                     </div>
 
                             ) : (
 
                                  <div className="cardset-static">
                                         <h4>Custom Cards: {cardTypeToDisplay}</h4>
-                                        {cardType === 'photos' &&
                                              <InnerBlocks
-                                                  allowedBlocks={clbInnerBlocks}
+                                                  allowedBlocks={ ALLOWED_BLOCKS }
                                              />
-                                        }
                                 </div>
 
                             ) }
@@ -186,18 +199,15 @@ registerBlockType( 'cgb/block-custom-cards', {
             );
         },
         save: props => {
-            const { columnNumber, flippedCardHeight } = props.attributes;
+            const { blockAlignment, cardType, columnNumber, isModal } = props.attributes;
 
-            let frSpacing = '1fr 1fr';
-            if( columnNumber == 1) { frSpacing = '1fr'; }
-            else if( columnNumber == 3) { frSpacing = '1fr 1fr 1fr'; }
-            else if( columnNumber == 4) { frSpacing = '1fr 1fr 1fr 1fr'; }
+            const clbAlignment = "align" + blockAlignment;
 
             return (
 
                  // Try nesting a style for child flip cards, see: https://stackoverflow.com/a/10833154/5369381
 
-                 <div className={ 'interactive-cardset' + ' columns-' + columnNumber}  data-card-height={flippedCardHeight} >
+                 <div className={ 'interactive-cardset' + ' columns-' + columnNumber + ' ' + clbAlignment} data-card-type={cardType} data-columns={columnNumber} data-is-modal={isModal} >
                     <InnerBlocks.Content />
                 </div>
 

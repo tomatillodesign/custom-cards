@@ -4,11 +4,142 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-cgb-block-banjo-blocks  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+/* ---- Columns ------ */
+
+.interactive-cardset {
+     display: grid;
+     column-gap: 20px;
+     grid-row-gap: 20px;
+     grid-template-columns: 1fr;
 }
+
+@media only screen and (min-width: 769px) {
+
+     .interactive-cardset.columns-2,
+     .interactive-cardset.columns-4,
+     .interactive-cardset.columns-5
+     {
+          grid-template-columns: 1fr 1fr;
+     }
+
+     .interactive-cardset.columns-3, .interactive-cardset.columns-6 {
+          grid-template-columns: 1fr 1fr 1fr;
+     }
+
+}
+
+@media only screen and (min-width: 1160px) {
+
+     .interactive-cardset.columns-4 {
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+     }
+
+     .interactive-cardset.columns-5 {
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+     }
+
+     .interactive-cardset.columns-6 {
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+     }
+
+}
+
+ /* ---- Basic Card ------ */
+
+ .interactive-card {
+      text-align: center;
+ }
+
+ .interactive-card.card-basic {
+      background: #fff;
+     box-shadow: 0 10px 40px rgba(0,0,0,.1);
+     transition: all ease-in-out .3s;
+ }
+
+ .interactive-card.card-basic h4.clb-card__title {
+      margin-top: 16px;
+      padding-bottom: 20px;
+ }
+
+ .interactive-card.card-basic:hover {
+     transform: translate3d(0,-4px,0);
+ }
+
+.interactive-card a {
+     text-decoration: none;
+}
+
+
+ /* ---- Flip Card ------ */
+
+ .interactive-card.card-flip {
+      width: 100%;
+      height: 300px;
+ }
+
+
+ /* This container is needed to position the front and back side */
+ .card-flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+ }
+
+ /* Do an horizontal flip when you move the mouse over the flip box container */
+ .interactive-card.card-flip:hover .card-flip-inner {
+   transform: rotateY(180deg);
+ }
+
+ /* Position the front and back side */
+ .flip-card-front, .flip-card-back {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   backface-visibility: hidden;
+ }
+
+ /* Style the front side (fallback if image is missing) */
+ .flip-card-front {
+   background-color: #eee;
+   color: black;
+   width: 100%;
+ }
+
+
+ /* Style the back side */
+ .flip-card-back {
+   background-color: #eee;
+   color: #000;
+   padding: 16px;
+   transform: rotateY(180deg);
+ }
+
+
+
+
+ .interactive-card.card-flip .clb-card__body {
+ 	font-size: 14px;
+      margin-bottom: 20px;
+ }
+
+ .interactive-card.card-flip .card-flip-inner .flip-card-front h4 {
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.2;
+      font-size: 2.8rem;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      text-shadow: 0px 0px 12px rgba(0,0,0,.5);
+ }
+
+ .flip-card-back h4 {
+ 	margin-top: 20px;
+      font-size: 20px;
+ 	font-size: 2rem;
+ }

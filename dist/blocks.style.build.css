@@ -9,41 +9,53 @@
  *
  * CSS for both Frontend+Backend.
  */
-.wp-block-cgb-block-banjo-blocks {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.interactive-card {
-  text-align: center;
-  margin-bottom: 30px; }
+/* ---- Columns ------ */
+.interactive-cardset {
+  display: grid;
+  -webkit-column-gap: 20px;
+     -moz-column-gap: 20px;
+          column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr; }
+
+@media only screen and (min-width: 769px) {
+  .interactive-cardset.columns-2,
+  .interactive-cardset.columns-4,
+  .interactive-cardset.columns-5 {
+    grid-template-columns: 1fr 1fr; }
+  .interactive-cardset.columns-3, .interactive-cardset.columns-6 {
+    grid-template-columns: 1fr 1fr 1fr; } }
+
+@media only screen and (min-width: 1160px) {
+  .interactive-cardset.columns-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .interactive-cardset.columns-5 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  .interactive-cardset.columns-6 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; } }
 
 /* ---- Basic Card ------ */
+.interactive-card {
+  text-align: center; }
+
 .interactive-card.card-basic {
+  background: #fff;
   -webkit-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
   -webkit-transition: all ease-in-out .3s;
   -o-transition: all ease-in-out .3s;
   transition: all ease-in-out .3s; }
 
 .interactive-card.card-basic h4.clb-card__title {
-  /* margin-top: 12px;
-     padding-bottom: 20px; */
-  margin-top: 20px;
-  padding-bottom: 14px; }
+  margin-top: 16px;
+  padding-bottom: 20px; }
 
 .interactive-card.card-basic:hover {
   -webkit-transform: translate3d(0, -4px, 0);
           transform: translate3d(0, -4px, 0); }
+
+.interactive-card a {
+  text-decoration: none; }
 
 /* ---- Flip Card ------ */
 .interactive-card.card-flip {
@@ -112,3 +124,51 @@
   margin-top: 20px;
   font-size: 20px;
   font-size: 2rem; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.clb-card__description {
+  padding: 0 12px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.clb-icon-card-area {
+  text-align: center;
+  padding: 20px;
+  padding-top: 40px;
+  margin-bottom: 20px;
+  -webkit-transition: all ease-in-out .35s;
+  -o-transition: all ease-in-out .35s;
+  transition: all ease-in-out .35s;
+  border-radius: 5px; }
+
+.clb-icon-card-area.foreground-text-light, .clb-icon-card-area.foreground-text-light a {
+  color: #fff; }
+
+.clb-icon-card-area.foreground-text-dark, .clb-icon-card-area.foreground-text-dark a {
+  color: #222; }
+
+.clb-icon-card-area a {
+  text-decoration: none; }
+
+.clb_card__title {
+  margin-top: 20px; }
+
+.clb-icon-card-area:hover {
+  -webkit-transform: translate3d(0, -6px, 0);
+          transform: translate3d(0, -6px, 0); }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.clb-button-area .button.full {
+  width: 100%;
+  text-align: center; }

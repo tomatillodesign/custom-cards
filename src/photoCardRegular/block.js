@@ -41,8 +41,8 @@ export default registerBlockType(
     {
         title: __( 'Photo Card - Regular', 'clbphotocardregular' ),
         description: __( 'Add interactive photo cards to your content ', 'clbphotocardregular'),
-        category: 'common',
-        parent: ['cgb/block-custom-cards'],
+        category: 'custom-cards',
+        // parent: ['cgb/block-custom-cards'],
 	   icon: {
 	        foreground: '#fff',
 	        background: '#3883d6',
@@ -71,16 +71,21 @@ export default registerBlockType(
 			selector: '.clb-card__title',
 			// default: __( 'Card Title' ),
 		},
+          includeCardDescription: {
+               type: 'string',
+               default: 'no',
+          },
+          cardDescription: {
+               type: 'array',
+               source: 'children',
+               selector: '.clb-card__description',
+		},
           cardLink: {
                 type: 'string',
                 source: 'attribute',
                 attribute: 'href',
                 selector: 'a',
             },
-          cardBody: {
-               source: 'html',
-               selector: '.clb-card__body',
-          },
           buttonText: {
                source: 'html',
                selector: '.clb-card__button-text',
@@ -88,7 +93,7 @@ export default registerBlockType(
           },
         },
         edit: props => {
-            const { attributes: { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink, cardBody, buttonText },
+            const { attributes: { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink, includeCardDescription, cardDescription, buttonText },
                 className, setAttributes, isSelected } = props;
             const onSelectImage = img => {
 
@@ -100,7 +105,7 @@ export default registerBlockType(
                     imgURL: imgURL,
                     imgAlt: img.alt,
                 } );
-                
+
             };
 
             const onRemoveImage = () => {
@@ -115,6 +120,8 @@ export default registerBlockType(
             const onChangeTitle = cardTitle => { setAttributes( { cardTitle } ) };
             const onChangeBody = cardBody => { setAttributes( { cardBody } ) };
             const onChangeButtonText = buttonText => { setAttributes( { buttonText } ) };
+            const onChangeIncludeCardDescription = includeCardDescription => { setAttributes( { includeCardDescription } ) };
+            const onChangeCardDescription = cardDescription => { setAttributes( { cardDescription } ) };
 
             return (
 			  <Fragment>
@@ -123,6 +130,16 @@ export default registerBlockType(
                        title={ __( 'Card Settings', 'clbphotocardregular' ) }
                    >
                        <PanelRow>
+                            <RadioControl
+                              id="clb-select-card-description"
+                              label="Include card description field?"
+                                 selected={ includeCardDescription }
+                                 options={ [
+                                    { label: 'Yes', value: 'yes' },
+                                    { label: 'No', value: 'no' },
+                               ] }
+                               onChange={ onChangeIncludeCardDescription }
+                         />
                        </PanelRow>
                    </PanelBody>
                </InspectorControls>
@@ -161,25 +178,6 @@ export default registerBlockType(
                                value={ cardLink }
                                onChange={ cardLink => setAttributes( { cardLink } ) }
                            />
-                           { cardType == 'flip' && (
-                                <div>
-                                <TextareaControl
-                                   className='clb-card__body'
-                                   label={ 'Card Body' }
-                                   value={ cardBody }
-                                   placeholder={ 'Card Body' }
-                                   onChange={ onChangeBody }
-                                />
-                                <TextControl
-                                   className='clb-card__button-text'
-                                   label={ 'Button Text' }
-                                   value={ buttonText }
-                                   placeholder={ 'Card Body' }
-                                   onChange={ onChangeButtonText }
-                                />
-                                </div>
-                         ) }
-
                        </Fragment>
 
                     ) : (
@@ -220,30 +218,22 @@ export default registerBlockType(
                                     placeholder={ 'Card Title' }
                                     onChange={ onChangeTitle }
                                />
+                               { includeCardDescription === 'yes' &&
+                                   <div className="clb-card__description">
+                                    <RichText
+                                       tagName="div"
+                                       multiline="p"
+                                       placeholder='Add the card description here...'
+                                 		onChange={ onChangeCardDescription }
+                                 		value={ cardDescription }
+                             		/>
+                                   </div>
+                              }
                                <URLInput
                                        className="clb-card__link"
                                        value={ cardLink }
                                        onChange={ cardLink => setAttributes( { cardLink } ) }
                                    />
-                                   { cardType == 'flip' && (
-                                       <div>
-                                       <TextareaControl
-                                          className='clb-card__body'
-                                          label={ 'Card Body' }
-                                          value={ cardBody }
-                                          placeholder={ 'Card Body' }
-                                          onChange={ onChangeBody }
-                                       />
-                                       <TextControl
-                                          className='clb-card__button-text'
-                                          label={ 'Button Text' }
-                                          value={ buttonText }
-                                          placeholder={ 'Card Body' }
-                                          onChange={ onChangeButtonText }
-                                       />
-                                       </div>
-                                ) }
-
                                    </div>
 
                             ) : (
@@ -268,38 +258,24 @@ export default registerBlockType(
             );
         },
         save: props => {
-            const { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink, cardBody, buttonText } = props.attributes;
+            const { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink, includeCardDescription, cardDescription, buttonText } = props.attributes;
 
             return (
 
                  <div className={"interactive-card" + ' card-' + cardType}>
 
-                 { cardType == 'basic' && (
-                      <a href={cardLink}>
-                               <img
-                                  src={ imgURL }
-                                  alt={ imgAlt }
-                               />
-                               <h4 className="clb-card__title">{cardTitle}</h4>
-                         </a>
-                 )}
-
-                 { cardType == 'flip' && (
-                      <div className="card-flip-inner">
-                         <div className="flip-card-front" style={ {
-							backgroundImage: `url(${ imgURL })`,
-							backgroundSize: 'cover',
-                                   backgroundPosition: 'center',
-						} }>
-                              <h4 className="clb-card__title">{cardTitle}</h4>
-                         </div>
-                              <div className="flip-card-back">
-                                   <h4 className="clb-card__title">{cardTitle}</h4>
-                                   <div className="clb-card__body">{cardBody}</div>
-                                   <a href={cardLink} className="clb-card__button-text button">{buttonText}</a>
+                 <a href={cardLink}>
+                         <img
+                            src={ imgURL }
+                            alt={ imgAlt }
+                         />
+                         <h4 className="clb-card__title">{cardTitle}</h4>
+                         { includeCardDescription === 'yes' &&
+                              <div className="clb-card__description">
+                                   {cardDescription}
                               </div>
-                         </div>
-                )}
+                         }
+                   </a>
 
                 </div>
             );

@@ -34,3 +34,28 @@ img.card-static-image {
           filter: grayscale(75%);
   -webkit-filter: opacity(50%);
           filter: opacity(50%); }
+
+.clb-card__description {
+  padding: 20px;
+  background: #f5f5f5; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.clb-icon-card-static {
+  text-align: center;
+  background: #0066cc;
+  color: #fff;
+  padding: 16px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.clb-button-static {
+  text-align: center;
+  color: #fff;
+  padding: 16px; }

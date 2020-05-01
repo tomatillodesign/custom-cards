@@ -88,3 +88,19 @@ function banjo_blocks_cgb_block_assets() { // phpcs:ignore
 
 // Hook: Block assets.
 add_action( 'init', 'banjo_blocks_cgb_block_assets' );
+
+
+
+
+function clb_custom_block_category( $categories, $post ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug' => 'custom-cards',
+				'title' => __( 'Custom Cards', 'custom-cards' ),
+			),
+		)
+	);
+}
+add_filter( 'block_categories', 'clb_custom_block_category', 10, 2);
