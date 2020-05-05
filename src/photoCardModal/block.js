@@ -42,7 +42,7 @@ const { Fragment } = wp.element;
 export default registerBlockType(
     'cgb/photo-card-modal',
     {
-        title: 'Modal Card',
+        title: 'Photo Modal Card',
         description:  'Create a photo card with modal (pop up) content.',
         category: 'common',
         icon: {
@@ -158,15 +158,7 @@ export default registerBlockType(
                        />
 
                        <h4 className="modal-body-header">Modal Body</h4>
-                           <InnerBlocks
-                               allowedBlocks={ [
-                                    'core/paragraph',
-                                     'core/heading',
-                                     'core/columns',
-                                     'core/column',
-                                     'core/image'
-                               ] }
-                               />
+                           <InnerBlocks />
 
                             </Fragment>
 
