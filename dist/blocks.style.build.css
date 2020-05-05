@@ -171,4 +171,11 @@
 */
 .clb-button-area .button.full {
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center; }
