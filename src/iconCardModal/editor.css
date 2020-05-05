@@ -2,3 +2,9 @@
      padding: 12px;
      background: #eee;
 }
+
+.clb-modal-contents {
+     padding: 20px;
+     text-align: left;
+     background: #f5f5f5;
+}

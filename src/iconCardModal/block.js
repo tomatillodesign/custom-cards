@@ -22,6 +22,7 @@ const {
     RichText,
     URLInput,
     InnerBlocks,
+    PanelColorSettings,
 } = wp.blockEditor;
 const {
     Button,
@@ -77,7 +78,7 @@ export default registerBlockType(
                },
                iconSize: {
                     type: 'string',
-                    default: '4x'
+                    default: 'fa-4x'
                },
                iconStyle: {
                     type: 'string',
@@ -114,7 +115,7 @@ export default registerBlockType(
                     .replace(/-+$/, '');            // Trim - from end of text
                  }
 
-            const setTitleID = iconCardTitle => { setAttributes( { titleID : slugify(iconCardTitle) } ) };
+            const setTitleID = titleID => { setAttributes( { titleID : slugify(iconCardTitle) } ) };
             setTitleID();
 
             return (
@@ -129,15 +130,27 @@ export default registerBlockType(
                        value={ icon }
                        onChange={ onChangeIcon }
                    />
-                   <TextControl
+                   <SelectControl
                        label={ 'Icon Size' }
                        help={ 'Select the size of your icon. See: https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons' }
                        value={ iconSize }
                        onChange={ onChangeIconSize }
+                       options={[
+                        { label: "Large", value: "fa-lg" },
+                        { label: "2X", value: "fa-2x" },
+                        { label: "3X", value: "fa-3x" },
+                        { label: "4X", value: "fa-4x" },
+                        { label: "5X", value: "fa-5x" },
+                        { label: "6X", value: "fa-6x" },
+                        { label: "7X", value: "fa-7x" },
+                        { label: "8X", value: "fa-8x" },
+                        { label: "9X", value: "fa-9x" },
+                        { label: "10X", value: "fa-10x" },
+                      ]}
                    />
                    <SelectControl
                        label={ 'Icon Style' }
-                       help={ 'Select the size of your icon. See: https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons' }
+                       help={ 'Select the style of your icon. See: https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use' }
                        value={ iconStyle }
                        onChange={ onChangeIconStyle }
                        options={[
@@ -182,11 +195,13 @@ export default registerBlockType(
                     ) : (
 
                        <div className="icon-card-regular-static" style={ { backgroundColor: backgroundColor } }>
-                              <div className="clb-card-icon"><i className={ `${iconStyle} fa-${icon} fa-${iconSize}` }></i></div>
+                              <div className="clb-card-icon"><i className={ `${iconStyle} fa-${icon} ${iconSize}` }></i></div>
                               <strong>{iconCardTitle}</strong>
+                              <div className="clb-modal-contents">
                               <h4 className="clb-modal-card-body-header">Modal Body</h4>
                                  <InnerBlocks />
-                      </div>
+                                 </div>
+                                </div>
 
                             ) }
 
@@ -196,7 +211,7 @@ export default registerBlockType(
 
         save: props => {
 
-            const { iconCardTitle, iconCardLink, icon, iconSize, iconStyle, backgroundColor, titleID } = props.attributes;
+            const { iconCardTitle, iconCardLink, icon, iconSize, iconStyle, content, backgroundColor, titleID } = props.attributes;
 
             function getContrastYIQ(hexcolor){
 
@@ -209,33 +224,34 @@ export default registerBlockType(
 
             return (
 
+                 <Fragment>
                  <div className="clb-modal-card-area">
+                      <div className={ `icon-card-regular-area foreground-text-${getContrastYIQ(backgroundColor)}` } style={ { backgroundColor: backgroundColor } } >
+                      <a href={'#' + titleID} data-toggle="modal">
+                           <div className="clb-card-icon"><i className={ `${iconStyle} fa-${icon} ${iconSize}` }></i></div>
+                           <h3 className="clb_card__title">{iconCardTitle}</h3>
+                       </a>
+                         </div>
 
-                 <div className={ `icon-card-regular-area foreground-text-${getContrastYIQ(backgroundColor)}` } style={ { backgroundColor: backgroundColor } } >
-                 <a href={'#' + titleID} data-toggle="modal">
-                         <h3 className="modal-card-title-input">{cardTitle}</h3>
-                  </a>
-                    </div>
+                         <div className="clb-custom-modal-move">
+                         <div id={titleID} className="modal fade" tabindex="-1" role="dialog">
+                             <div className="modal-dialog" role="document">
+                                 <div className="modal-content">
+                                     <div className="modal-header">
 
-                    <div className="clb-custom-modal-move">
-                    <div id={titleID} className="modal fade" tabindex="-1" role="dialog">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
+                                        <h4 className="modal-title">{iconCardTitle}</h4>
+                                           <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                                </button>
+                                     </div>
 
-                                   <h4 className="modal-title">{cardTitle}</h4>
-                                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">×</span>
-                                           </button>
-                                </div>
-
-                                <div className="modal-body"><InnerBlocks.Content />{content}</div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    </div>
+                                     <div className="modal-body"><InnerBlocks.Content />{content}</div>
+                                 </div>
+                             </div>
+                         </div>
+                         </div>
+                         </div>
+                    </Fragment>
 
             );
         },
