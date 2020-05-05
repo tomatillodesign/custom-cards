@@ -13,9 +13,10 @@ import './cards/block.js';
 
 // Photo Cards
 import './photoCardRegular/block.js';
+import './photoCardModal/block.js';
 
 // Icon Cards
 import './iconCardRegular/block.js';
- 
+
 // Button Cards
 import './buttonCardRegular/block.js';

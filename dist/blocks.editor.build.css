@@ -44,6 +44,15 @@ img.card-static-image {
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.wp-block-clb-custom-blocks-modal-card {
+  padding: 12px;
+  background: #eee; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 .icon-card-regular-static {
   text-align: center;
   background: #0066cc;
