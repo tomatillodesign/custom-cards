@@ -116,6 +116,7 @@ export default registerBlockType(
                         { label: "Solid", value: "fas" },
                         { label: "Regular", value: "far" },
                         { label: "Light", value: "fal" },
+                        { label: "Duotone", value: "fad" },
                         { label: "Brand", value: "fab" }
                       ]}
                    />
@@ -156,7 +157,8 @@ export default registerBlockType(
                     ) : (
 
                        <div className="icon-card-regular-static" style={ { backgroundColor: backgroundColor } }>
-                           <strong>{iconCardTitle}</strong>
+                              <div className="clb-card-icon"><i className={ `${iconStyle} fa-${icon} fa-${iconSize}` }></i></div>
+                              <strong>{iconCardTitle}</strong>
                       </div>
 
                             ) }

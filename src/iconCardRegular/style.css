@@ -1,4 +1,4 @@
-.clb-icon-card-area {
+.icon-card-regular-area {
      text-align: center;
      padding: 20px;
      padding-top: 40px;
@@ -7,22 +7,22 @@
      border-radius: 5px;
 }
 
-.clb-icon-card-area.foreground-text-light, .clb-icon-card-area.foreground-text-light a {
+.icon-card-regular-area.foreground-text-light, .icon-card-regular-area.foreground-text-light a {
      color: #fff;
 }
 
-.clb-icon-card-area.foreground-text-dark, .clb-icon-card-area.foreground-text-dark a {
+.icon-card-regular-area.foreground-text-dark, .icon-card-regular-area.foreground-text-dark a {
      color: #222;
 }
 
-.clb-icon-card-area a {
+.icon-card-regular-area a {
      text-decoration: none;
 }
 
-.clb_card__title {
+.entry-content h3.clb_card__title {
      margin-top: 20px;
 }
 
-.clb-icon-card-area:hover {
+.icon-card-regular-area:hover {
     transform: translate3d(0,-6px,0);
 }

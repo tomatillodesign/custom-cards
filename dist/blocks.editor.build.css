@@ -44,11 +44,12 @@ img.card-static-image {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.clb-icon-card-static {
+.icon-card-regular-static {
   text-align: center;
   background: #0066cc;
   color: #fff;
-  padding: 16px; }
+  padding: 16px;
+  border-radius: 5px; }
 /**
  * #.# Common SCSS
  *

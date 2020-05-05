@@ -269,7 +269,7 @@ export default registerBlockType(
                             src={ imgURL }
                             alt={ imgAlt }
                          />
-                         <h4 className="clb-card__title">{cardTitle}</h4>
+                         <h3 className="clb-card__title">{cardTitle}</h3>
                          { includeCardDescription === 'yes' &&
                               <div className="clb-card__description">
                                    {cardDescription}
