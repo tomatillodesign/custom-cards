@@ -44,9 +44,23 @@ img.card-static-image {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-clb-custom-blocks-modal-card {
+.wp-block-cgb-photo-card-modal {
   padding: 12px;
-  background: #eee; }
+  background: #f5f5f5; }
+
+.modal-card-title-editor {
+  text-align: center; }
+
+.clb-modal-contents {
+  margin-top: 20px;
+  padding: 20px;
+  text-align: left;
+  background: #f5f5f5;
+  color: #222;
+  border-radius: 5px;
+  border: 1px solid #222;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
 /**
  * #.# Common SCSS
  *
@@ -70,9 +84,19 @@ img.card-static-image {
   background: #eee; }
 
 .clb-modal-contents {
+  margin-top: 20px;
   padding: 20px;
   text-align: left;
-  background: #f5f5f5; }
+  background: #f5f5f5;
+  color: #222;
+  border-radius: 5px;
+  border: 1px solid #222;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+
+h4.clb-modal-card-body-header {
+  margin-top: 0 !important;
+  padding-top: 0; }
 /**
  * #.# Common SCSS
  *
@@ -83,3 +107,27 @@ img.card-static-image {
   text-align: center;
   color: #fff;
   padding: 16px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-clb-custom-blocks-modal-card {
+  padding: 12px;
+  background: #eee; }
+
+.clb-modal-contents {
+  margin-top: 20px;
+  padding: 20px;
+  text-align: left;
+  background: #f5f5f5;
+  color: #222;
+  border-radius: 5px;
+  border: 1px solid #222;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+
+h4.clb-modal-card-body-header {
+  margin-top: 0 !important;
+  padding-top: 0; }

@@ -45,7 +45,7 @@ export default registerBlockType(
     {
         title: 'Icon Modal Card',
         description:  'Create an icon card with modal (pop up) content.',
-        category: 'common',
+        category: 'custom-cards',
         icon: {
                foreground: '#fff',
                background: '#3883d6',
@@ -198,7 +198,7 @@ export default registerBlockType(
                               <div className="clb-card-icon"><i className={ `${iconStyle} fa-${icon} ${iconSize}` }></i></div>
                               <strong>{iconCardTitle}</strong>
                               <div className="clb-modal-contents">
-                              <h4 className="clb-modal-card-body-header">Modal Body</h4>
+                              <h4 className="clb-modal-card-body-header">Modal (Pop-up) Body</h4>
                                  <InnerBlocks />
                                  </div>
                                 </div>

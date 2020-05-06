@@ -21,3 +21,4 @@ import './iconCardModal/block.js';
 
 // Button Cards
 import './buttonCardRegular/block.js';
+import './buttonCardModal/block.js';

@@ -1,4 +1,19 @@
-.wp-block-clb-custom-blocks-modal-card {
+.wp-block-cgb-photo-card-modal {
      padding: 12px;
-     background: #eee;
+     background: #f5f5f5;
+}
+
+.modal-card-title-editor {
+     text-align: center;
+}
+
+.clb-modal-contents {
+     margin-top: 20px;
+     padding: 20px;
+     text-align: left;
+     background: #f5f5f5;
+     color: #222;
+     border-radius: 5px;
+     border: 1px solid #222;
+     box-shadow: 0 0 20px rgba(0,0,0,.5);
 }

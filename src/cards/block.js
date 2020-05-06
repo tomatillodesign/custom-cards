@@ -119,9 +119,9 @@ registerBlockType( 'cgb/block-custom-cards', {
                 if( cardType === 'buttons' && isModal === 'regular' ) { ALLOWED_BLOCKS = [ 'cgb/button-card-regular' ]; }
                 if( cardType === 'photos' && isModal === 'modal' ) { ALLOWED_BLOCKS = [ 'cgb/photo-card-modal' ]; cardTypeToDisplay = "Photos (Modal)"; }
                 if( cardType === 'icons' && isModal === 'modal' ) { ALLOWED_BLOCKS = [ 'cgb/icon-card-modal' ]; cardTypeToDisplay = "Icons (Modal)"; }
-                if( cardType === 'buttons' && isModal === 'modal' ) { ALLOWED_BLOCKS = [ 'cgb/photo-card-modal' ]; cardTypeToDisplay = "Buttons (Modal)"; }
+                if( cardType === 'buttons' && isModal === 'modal' ) { ALLOWED_BLOCKS = [ 'cgb/button-card-modal' ]; cardTypeToDisplay = "Buttons (Modal)"; }
 
-                console.log("421 TEST");
+                console.log("304 TEST");
                 const clbAlignment = "align" + blockAlignment;
 
             return (

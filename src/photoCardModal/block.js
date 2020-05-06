@@ -44,7 +44,7 @@ export default registerBlockType(
     {
         title: 'Photo Modal Card',
         description:  'Create a photo card with modal (pop up) content.',
-        category: 'common',
+        category: 'custom-cards',
         icon: {
                foreground: '#fff',
                background: '#3883d6',
@@ -157,7 +157,7 @@ export default registerBlockType(
                             onChange={ onChangeTitle }
                        />
 
-                       <h4 className="modal-body-header">Modal Body</h4>
+                       <h4 className="modal-body-header">Modal (Pop-up) Body</h4>
                            <InnerBlocks />
 
                             </Fragment>
@@ -214,9 +214,10 @@ export default registerBlockType(
                                         alt={ imgAlt }
                                         className = "clb-modal-card-static-image"
                                      />
-                                     <strong>{cardTitle}</strong>
-                                     <h4 className="clb-modal-card-body-header">Modal Body</h4>
+                                     <div className="modal-card-title-editor"><strong>{cardTitle}</strong></div>
+                                     <div className="clb-modal-contents">
                                          <InnerBlocks />
+                                    </div>
                                 </div>
 
                             ) }

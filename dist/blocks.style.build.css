@@ -170,7 +170,6 @@
   text-align: center;
   padding: 20px;
   padding-top: 40px;
-  margin-bottom: 20px;
   -webkit-transition: all ease-in-out .35s;
   -o-transition: all ease-in-out .35s;
   transition: all ease-in-out .35s;
@@ -235,3 +234,31 @@
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/* ---- Modal Card ------ */
+.clb-modal-card-area {
+  text-align: center; }
+
+.clb-modal-card-area {
+  background: #fff;
+  -webkit-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all ease-in-out .3s;
+  -o-transition: all ease-in-out .3s;
+  transition: all ease-in-out .3s; }
+
+.entry-content h3.modal-card-title-input {
+  margin-top: 20px;
+  padding-bottom: 0; }
+
+.clb-modal-card-area:hover {
+  -webkit-transform: translate3d(0, -4px, 0);
+          transform: translate3d(0, -4px, 0); }
+
+.clb-modal-card-area a {
+  text-decoration: none; }
