@@ -34,3 +34,4 @@ Please contact me at https://www.tomatillodesign.com/.
 
 == Roadmap / ToDo's ==
 * Edit UI for the issue of trying to switch inner block types after blocks have already been added (eg from Icon to Photo)
+* Create a unique, permanent html ID for each block for styling and manipulating later

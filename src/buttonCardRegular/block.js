@@ -5,6 +5,7 @@ import icons from './icons';
 import './editor.scss';
 import './style.css';
 
+
 /**
  * Internal block libraries
  */
@@ -68,7 +69,7 @@ export default registerBlockType(
           },
         },
         edit: props => {
-            const { attributes: { buttonText, buttonLink, backgroundColor },
+            const { attributes: { buttonText, buttonLink, backgroundColor, uniqueID },
                 className, setAttributes, isSelected } = props;
 
             const onChangeButtonText = buttonText => { setAttributes( { buttonText } ) };
@@ -116,7 +117,7 @@ export default registerBlockType(
                          </div>
                     ) : (
 
-                       <div className="clb-button-static" style={ { backgroundColor: backgroundColor } }>
+                       <div className="clb-button-static" style={ { backgroundColor: backgroundColor } } >
                            <strong>{buttonText}</strong>
                       </div>
 
@@ -128,11 +129,11 @@ export default registerBlockType(
 
         save: props => {
 
-            const { buttonText, buttonLink, backgroundColor } = props.attributes;
+            const { buttonText, buttonLink, backgroundColor, uniqueID } = props.attributes;
 
             return (
 
-                 <div className="clb-button-area" >
+                 <div className="clb-button-area">
                       <a href={buttonLink} className="button full clb-button" style={ { backgroundColor: backgroundColor } }>
                                <div className="clb-button__text">{buttonText}</div>
                          </a>
